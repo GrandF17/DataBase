@@ -1,19 +1,51 @@
-import ExcelJS from "exceljs";
+import Excel from "exceljs";
 // import rewritePattern from "regexpu-core";
 // import { generateRegexpuOptions } from "@babel/helper-create-regexp-features-plugin/lib/util";
 
 export class DB {
-  //   public filename: string;
-  //   public workbook: any;
+  public filename: string;
+  public workbook: any;
 
-  //   constructor(_filename: string) {
-  //     this.filename = _filename;
-  //     this.workbook = new ExcelJS.Workbook();
-  //   }
+  constructor(_filename: string) {
+    this.filename = _filename;
+    this.workbook = new Excel.Workbook();
+  }
+
+  // basic structure of xlsx file:
+  // team id|name|rating|matches amount|substitutions (0-5)|rating HLTV|middle rating (2-0)|game id|id_1/id_2|maps amount|
+  public addColumn<T>(sheet: string, entity: T) {
+    let worksheet = this.workbook.getWorksheet(sheet);
+
+    if (typeof worksheet === "undefined") {
+      worksheet = this.workbook.addWorksheet(sheet);
+      console.log("kek");
+    } else {
+      // comparison of type of entity and existing columns
+      // spoiler: must be equal
+      let k: keyof typeof entity;
+      for (k in entity) {
+        if ((worksheet._keys[k] as String) == (entity[k] as String))
+          throw "Incompatible types";
+      }
+      console.log("lol");
+    }
+
+    worksheet.columns = [
+      ...Object.keys(entity as Object).map((x: any) => {
+        return { header: x, key: x.toLowerCase(), width: x.length + 5 };
+      }),
+    ];
+
+    console.log(
+      Object.keys(entity as Object).map((x: any) => {
+        return { header: x, key: x.toLowerCase(), width: x.length + 5 };
+      })
+    );
+
+    worksheet.addRow(entity);
+  }
 
   public async write() {
-    const Excel = require("exceljs");
-
     async function exTest() {
       const workbook = new Excel.Workbook();
       const worksheet = workbook.addWorksheet("My Sheet");
@@ -40,7 +72,7 @@ export class DB {
         { header: "Name", key: "name", width: 32 },
         { header: "D.O.B.", key: "dob", width: 15 },
       ];
-      await newworksheet.addRow({
+      newworksheet.addRow({
         id: 3,
         name: "New Guy",
         dob: new Date(2000, 1, 1),
