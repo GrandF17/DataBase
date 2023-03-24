@@ -13,8 +13,7 @@ export class INFO {
     return await HLTV.getMatches();
   }
 
-  public async matchById(req: any): Promise<any> {
-    const { eventId } = req.params;
+  public async matchById(eventId: number): Promise<any> {
     return await HLTV.getMatches(eventId);
   }
 
@@ -22,8 +21,7 @@ export class INFO {
     return await HLTV.getTopPlayers();
   }
 
-  public async playerById(req: any): Promise<any> {
-    const { playerId } = req.params;
+  public async playerById(playerId: number): Promise<any> {
     return await HLTV.getPlayerById(playerId);
   }
 
@@ -31,8 +29,7 @@ export class INFO {
     return await HLTV.getTopTeams();
   }
 
-  public async teamById(req: any): Promise<any> {
-    const { teamId } = req.params;
+  public async teamById(teamId: number): Promise<any> {
     return await HLTV.getTeamById(Number(teamId));
   }
 }
