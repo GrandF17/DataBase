@@ -1,4 +1,4 @@
-import { INFO } from "./hltv";
+import { INFO } from "./hltv-handler";
 import HLTV from "hltv-api";
 import { DB } from "./db";
 

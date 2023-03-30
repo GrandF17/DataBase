@@ -32,7 +32,7 @@
   },
   "dependencies": {
     "exceljs": "^4.3.0",
-    "hltv-api": "^3.0.3",
+    "hltv": "^3.4.4",
     "tele-sender": "^1.0.2",
     "telegraf": "^4.11.2"
   }
