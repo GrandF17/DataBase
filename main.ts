@@ -1,8 +1,6 @@
-import { INFO } from "./hltv-handler";
-import HLTV from "hltv-api";
+import { getTeamPlayersStats, getTopTeams } from "./hltv-handler";
 import { DB } from "./db";
 
-const info = new INFO();
 const db = new DB("export.xlsx");
 
 export interface Fraction {
@@ -23,7 +21,7 @@ interface teamInfo {
 }
 
 async function setBaseInfo() {
-  const teams = await info.teams();
+  const teams = await getTopTeams();
   teams.map((x: any, i: number) => {
     db.addRaw<teamInfo>("Teams", {
       teamId: x.id,
@@ -59,8 +57,9 @@ async function setBaseInfo() {
   //   mapsAmount: 0,
   // } as teamInfo);
 
-  // await setBaseInfo();
-  console.log(await HLTV.getTopPlayers());
+  await setBaseInfo();
+  console.log(await getTopTeams(false));
+
   // console.log(await info.news());
   // await db.write("export_new.xlsx");
   // await db.read("export_new.xlsx");
