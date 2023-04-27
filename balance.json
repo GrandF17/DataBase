@@ -1,0 +1,416 @@
+[
+    {
+        "id": 7122,
+        "name": "Brazy Party 2023",
+        "dateStart": 1682503200000,
+        "dateEnd": 1683108000000,
+        "featured": true
+    },
+    {
+        "id": 7158,
+        "name": "ESL Challenger League Season 45 Europe",
+        "dateStart": 1681207200000,
+        "dateEnd": 1685268000000,
+        "featured": false
+    },
+    {
+        "id": 7159,
+        "name": "ESL Challenger League Season 45 North America",
+        "dateStart": 1681207200000,
+        "dateEnd": 1685095200000,
+        "featured": false
+    },
+    {
+        "id": 7149,
+        "name": "CCT West Europe Series 3",
+        "dateStart": 1681984800000,
+        "dateEnd": 1683194400000,
+        "featured": false
+    },
+    {
+        "id": 7171,
+        "name": "CCT South Europe Series 4",
+        "dateStart": 1682157600000,
+        "dateEnd": 1685095200000,
+        "featured": false
+    },
+    {
+        "id": 7124,
+        "name": "Elisa Invitational Spring 2023",
+        "dateStart": 1682330400000,
+        "dateEnd": 1686391200000,
+        "featured": false
+    },
+    {
+        "id": 7164,
+        "name": "CCT Central Europe Series 6",
+        "dateStart": 1681725600000,
+        "dateEnd": 1682848800000,
+        "featured": false
+    },
+    {
+        "id": 7041,
+        "name": "MistGames Heroes of Lofoten 2023",
+        "dateStart": 1682416800000,
+        "dateEnd": 1682762400000,
+        "featured": false
+    },
+    {
+        "id": 7132,
+        "name": "ESL Australia & NZ Championship Season 16",
+        "dateStart": 1679911200000,
+        "dateEnd": 1686477600000,
+        "featured": false
+    },
+    {
+        "id": 7176,
+        "name": "CCT South America Series 7",
+        "dateStart": 1682330400000,
+        "dateEnd": 1683453600000,
+        "featured": false
+    },
+    {
+        "id": 7169,
+        "name": "TG Rush Autumn 2023",
+        "dateStart": 1682330400000,
+        "dateEnd": 1682848800000,
+        "featured": false
+    },
+    {
+        "id": 6866,
+        "name": "ESL Challenger Melbourne 2023",
+        "dateStart": 1682676000000,
+        "dateEnd": 1682848800000,
+        "location": {
+            "name": "Melbourne, Australia",
+            "code": "AU"
+        },
+        "prizePool": "$100,000",
+        "numberOfTeams": 8,
+        "featured": true
+    },
+    {
+        "id": 6794,
+        "name": "BLAST.tv Paris Major 2023 Challengers Stage",
+        "dateStart": 1683540000000,
+        "dateEnd": 1683799200000,
+        "location": {
+            "name": "Paris, France",
+            "code": "FR"
+        },
+        "prizePool": "Other",
+        "numberOfTeams": 16,
+        "featured": true
+    },
+    {
+        "id": 6793,
+        "name": "BLAST.tv Paris Major 2023",
+        "dateStart": 1683972000000,
+        "dateEnd": 1684663200000,
+        "location": {
+            "name": "Paris, France",
+            "code": "FR"
+        },
+        "prizePool": "$1,250,000",
+        "numberOfTeams": 16,
+        "featured": true
+    },
+    {
+        "id": 6861,
+        "name": "IEM Dallas 2023",
+        "dateStart": 1685354400000,
+        "dateEnd": 1685872800000,
+        "location": {
+            "name": "Dallas, TX, US",
+            "code": "US"
+        },
+        "prizePool": "$250,000",
+        "numberOfTeams": 16,
+        "featured": true
+    },
+    {
+        "id": 6972,
+        "name": "BLAST Premier Spring Final 2023",
+        "dateStart": 1686132000000,
+        "dateEnd": 1686477600000,
+        "location": {
+            "name": "Washington, D.C., US",
+            "code": "US"
+        },
+        "prizePool": "$425,000",
+        "numberOfTeams": 8,
+        "featured": true
+    },
+    {
+        "id": 6867,
+        "name": "ESL Challenger Katowice 2023",
+        "dateStart": 1686304800000,
+        "dateEnd": 1686477600000,
+        "location": {
+            "name": "Katowice, Poland",
+            "code": "PL"
+        },
+        "prizePool": "$100,000",
+        "numberOfTeams": 8,
+        "featured": true
+    },
+    {
+        "id": 6973,
+        "name": "BLAST Premier Fall Groups 2023",
+        "dateStart": 1689242400000,
+        "dateEnd": 1690106400000,
+        "prizePool": "$177,500",
+        "numberOfTeams": 12,
+        "featured": true
+    },
+    {
+        "id": 6812,
+        "name": "IEM Cologne 2023 Play-In",
+        "dateStart": 1690279200000,
+        "dateEnd": 1690365600000,
+        "location": {
+            "name": "Cologne, Germany",
+            "code": "DE"
+        },
+        "prizePool": "Other",
+        "numberOfTeams": 16,
+        "featured": true
+    },
+    {
+        "id": 6811,
+        "name": "IEM Cologne 2023",
+        "dateStart": 1690452000000,
+        "dateEnd": 1691316000000,
+        "location": {
+            "name": "Cologne, Germany",
+            "code": "DE"
+        },
+        "prizePool": "$1,000,000",
+        "numberOfTeams": 16,
+        "featured": true
+    },
+    {
+        "id": 7128,
+        "name": "Gamers8 Festival 2023",
+        "dateStart": 1692007200000,
+        "dateEnd": 1692525600000,
+        "location": {
+            "name": "Riyadh, Saudi Arabia",
+            "code": "SA"
+        },
+        "prizePool": "$1,000,000",
+        "numberOfTeams": 12,
+        "featured": true
+    },
+    {
+        "id": 6863,
+        "name": "ESL Pro League Season 18",
+        "dateStart": 1693389600000,
+        "dateEnd": 1696154400000,
+        "location": {
+            "name": "Malta",
+            "code": "MT"
+        },
+        "prizePool": "Other",
+        "numberOfTeams": 32,
+        "featured": true
+    },
+    {
+        "id": 6974,
+        "name": "BLAST Premier Fall Showdown 2023",
+        "dateStart": 1696413600000,
+        "dateEnd": 1696759200000,
+        "prizePool": "$135,000",
+        "featured": true
+    },
+    {
+        "id": 6865,
+        "name": "IEM Fall 2023",
+        "dateStart": 1697450400000,
+        "dateEnd": 1697968800000,
+        "prizePool": "Other",
+        "featured": true
+    },
+    {
+        "id": 6975,
+        "name": "BLAST Premier Fall Final 2023",
+        "dateStart": 1700650800000,
+        "dateEnd": 1700996400000,
+        "prizePool": "$425,000",
+        "featured": true
+    },
+    {
+        "id": 6976,
+        "name": "BLAST Premier World Final 2023",
+        "dateStart": 1702465200000,
+        "dateEnd": 1702810800000,
+        "prizePool": "$1,000,000",
+        "numberOfTeams": 8,
+        "featured": true
+    },
+    {
+        "id": 7148,
+        "name": "PGL CS2 Major Copenhagen 2024",
+        "dateStart": 1710673200000,
+        "dateEnd": 1711882800000,
+        "location": {
+            "name": "Copenhagen, Denmark",
+            "code": "DK"
+        },
+        "prizePool": "$1,250,000",
+        "numberOfTeams": 24,
+        "featured": true
+    },
+    {
+        "id": 7156,
+        "name": "Gamers Without Borders Women Charity Invitational 2023",
+        "dateStart": 1682589600000,
+        "dateEnd": 1682762400000,
+        "location": {
+            "name": "Europe (Online)",
+            "code": "EU"
+        },
+        "prizePool": "$2,500,000",
+        "numberOfTeams": 6,
+        "featured": false
+    },
+    {
+        "id": 7145,
+        "name": "ESL Challenger Katowice 2023 South America Closed Qualifier",
+        "dateStart": 1683108000000,
+        "dateEnd": 1683194400000,
+        "location": {
+            "name": "South America (Online)",
+            "code": "SAM"
+        },
+        "prizePool": "Other",
+        "numberOfTeams": 4,
+        "featured": false
+    },
+    {
+        "id": 7140,
+        "name": "ESL Challenger Katowice 2023 Europe Open Qualifier",
+        "dateStart": 1683108000000,
+        "dateEnd": 1683194400000,
+        "location": {
+            "name": "Europe (Online)",
+            "code": "EU"
+        },
+        "prizePool": "Other",
+        "featured": false
+    },
+    {
+        "id": 7141,
+        "name": "ESL Challenger Katowice 2023 Europe Closed Qualifier",
+        "dateStart": 1684576800000,
+        "dateEnd": 1684749600000,
+        "location": {
+            "name": "Europe (Online)",
+            "code": "EU"
+        },
+        "prizePool": "Other",
+        "numberOfTeams": 8,
+        "featured": false
+    },
+    {
+        "id": 6922,
+        "name": "ESL Impact League Season 3 Finals",
+        "dateStart": 1685700000000,
+        "dateEnd": 1685872800000,
+        "location": {
+            "name": "Dallas, TX, US",
+            "code": "US"
+        },
+        "prizePool": "$123,000",
+        "numberOfTeams": 8,
+        "featured": false
+    },
+    {
+        "id": 7179,
+        "name": "FiReLEAGUE Argentina 2023",
+        "dateStart": 1687255200000,
+        "dateEnd": 1687687200000,
+        "location": {
+            "name": "Argentina (Online)",
+            "code": "AR"
+        },
+        "prizePool": "Other",
+        "numberOfTeams": 8,
+        "featured": false
+    },
+    {
+        "id": 7178,
+        "name": "FiReLEAGUE Argentina 2023 Finals",
+        "dateStart": 1688292000000,
+        "dateEnd": 1688810400000,
+        "location": {
+            "name": "Buenos Aires, Argentina",
+            "code": "AR"
+        },
+        "prizePool": "$26,000",
+        "numberOfTeams": 4,
+        "featured": false
+    },
+    {
+        "id": 7177,
+        "name": "FiReLEAGUE Battle 2023",
+        "dateStart": 1688810400000,
+        "dateEnd": 1688810400000,
+        "location": {
+            "name": "Buenos Aires, Argentina",
+            "code": "AR"
+        },
+        "prizePool": "$150,000",
+        "numberOfTeams": 2,
+        "featured": false
+    },
+    {
+        "id": 6981,
+        "name": "FiReLEAGUE 2023 Global Finals",
+        "dateStart": 1697018400000,
+        "dateEnd": 1697364000000,
+        "location": {
+            "name": "Barcelona, Spain",
+            "code": "ES"
+        },
+        "prizePool": "$150,000",
+        "numberOfTeams": 8,
+        "featured": false
+    },
+    {
+        "id": 6868,
+        "name": "ESL Challenger Jonköping 2023",
+        "dateStart": 1700823600000,
+        "dateEnd": 1700996400000,
+        "location": {
+            "name": "TBA",
+            "code": "SE"
+        },
+        "prizePool": "Other",
+        "featured": false
+    },
+    {
+        "id": 6923,
+        "name": "ESL Impact League Season 4 Finals",
+        "dateStart": 1702033200000,
+        "dateEnd": 1702206000000,
+        "location": {
+            "name": "Valencia, Spain",
+            "code": "ES"
+        },
+        "prizePool": "Other",
+        "featured": false
+    },
+    {
+        "id": 6869,
+        "name": "ESL Challenger Atlanta 2023",
+        "dateStart": 1702638000000,
+        "dateEnd": 1702810800000,
+        "location": {
+            "name": "Atlanta, GA, US",
+            "code": "US"
+        },
+        "prizePool": "Other",
+        "featured": false
+    }
+]

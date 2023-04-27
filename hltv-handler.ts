@@ -5,6 +5,8 @@ import HLTV, {
   Team,
   TeamRanking,
 } from "hltv";
+import { writeFile } from "fs/promises";
+import { FullTeamStats } from "hltv/lib/endpoints/getTeamStats";
 
 const SECOND: number = 1000;
 const MINUTE: number = 60 * SECOND;
@@ -13,7 +15,30 @@ const DAY: number = 24 * HOUR;
 const WEEK: number = 7 * DAY;
 const MONTH: number = 4 * WEEK + 4 * DAY;
 
-interface PlayerStatistics {
+export enum throwErr {
+  true,
+  false,
+}
+
+export enum Period {
+  month_1,
+  month_1_5,
+  month_2_5,
+  length,
+}
+
+type MapType = {
+  [period in Period]: number;
+};
+
+export const period: MapType = {
+  [Period.month_1]: MONTH,
+  [Period.month_1_5]: MONTH + MONTH / 2,
+  [Period.month_2_5]: 2 * MONTH + MONTH / 2,
+  [Period.length]: 3,
+};
+
+export interface PlayerStatistics {
   name: string;
   rating: number;
   killsPerRound: number;
@@ -23,9 +48,41 @@ interface PlayerStatistics {
   roundsContributed: number;
 }
 
-enum throwErr {
-  true,
-  false,
+function liesInBetween(
+  point: number,
+  leftBorder: number,
+  rightBorder: number
+): boolean {
+  return point <= rightBorder && point >= leftBorder;
+}
+
+function gapWithinGap(innerGap: [number, number], outerGap: [number, number]) {
+  return (
+    liesInBetween(innerGap[0], ...outerGap) &&
+    liesInBetween(innerGap[1], ...outerGap)
+  );
+}
+
+export function convertToPlayerStats(
+  players: (FullPlayer | undefined)[]
+): PlayerStatistics[] {
+  let stats: PlayerStatistics[] = [];
+  for (let i = 0; i < players.length; i++) {
+    const playerStats = players[i]?.statistics;
+    if (playerStats != null) {
+      stats.push({
+        name: players[i]?.ign as string,
+        rating: playerStats.rating ?? 0,
+        killsPerRound: playerStats.killsPerRound ?? 0,
+        headshots: playerStats.headshots ?? 0,
+        mapsPlayed: playerStats.mapsPlayed ?? 0,
+        deathsPerRound: playerStats.deathsPerRound ?? 0,
+        roundsContributed: playerStats.roundsContributed ?? 0,
+      });
+    }
+  }
+
+  return stats;
 }
 
 export async function getPlayer(
@@ -36,28 +93,6 @@ export async function getPlayer(
   } else {
     return await HLTV.getPlayerByName({ name: idOrName as string });
   }
-}
-
-export async function getPlayerStats(
-  idOrName: number | string,
-  filer: throwErr = throwErr.true
-): Promise<PlayerStatistics | undefined> {
-  const player = await getPlayer(idOrName);
-  let stats =
-    typeof player?.statistics == "undefined"
-      ? undefined
-      : {
-          name: player.ign as string,
-          rating: player?.statistics.rating,
-          killsPerRound: player?.statistics.killsPerRound,
-          headshots: player?.statistics.headshots,
-          mapsPlayed: player?.statistics.mapsPlayed,
-          deathsPerRound: player?.statistics.deathsPerRound,
-          roundsContributed: player?.statistics.roundsContributed,
-        };
-  if (typeof stats == "undefined" && filer === throwErr.true)
-    throw `no stats found for ${player.name}`;
-  return stats;
 }
 
 export async function getTeam(idOrName: number | string): Promise<FullTeam> {
@@ -75,7 +110,7 @@ export async function getTeamPlayers(
   const team = await getTeam(idOrName);
 
   // filter from team coaches
-  const players = team.players.filter((x) => x.type != "Coach");
+  const players = team.players.filter((x: any) => x.type != "Coach");
   if (players.length == 0 && filer === throwErr.true)
     throw `no players for ${team.name}`;
   return players;
@@ -93,46 +128,76 @@ export async function getTeamPlayersStats(idOrName: number | string) {
   const names = (await getTeamPlayers(idOrName, throwErr.false)).map(
     (player) => player.name
   );
-  const p: Promise<PlayerStatistics | undefined>[] = [];
+  const p: Promise<FullPlayer | undefined>[] = [];
   for (let i = 0; i < names.length; i++) {
-    p.push(getPlayerStats(names[i], throwErr.false));
+    p.push(getPlayer(names[i]));
   }
 
   // instead of creating average player we exlude him from stats
   // filter all zero rating and undefined players
-  const playersStats = (await Promise.all(p))
+  let players = (await Promise.all(p))
     .filter((x) => typeof x != "undefined")
-    .filter((x) => x?.rating != 0);
+    .filter((x) => x?.statistics?.rating != 0);
+
+  const playersStats = convertToPlayerStats(players);
   return playersStats;
 }
 
-(async function main() {
-  // console.log(await HLTV.getTeamRanking());
-  // console.log(await HLTV.getTeamByName({ name: "G2" }));
-  // console.log((await HLTV.getTeam({ id: 5995 })));
-  // console.log(await HLTV.getTeamStats({ id: 5995 }));
-  // console.log(await HLTV.getRecentThreads());
-  // console.log(await HLTV.getResults({ eventIds: [1616] }));
-  // console.log(await HLTV.getPlayer({ id: 2730 }));
-  // console.log(await HLTV.getPlayerByName({ name: "chrisJ" }));
-  // console.log(await HLTV.getPlayerByName({ name: "s1mple" }));
-  // console.log(await HLTV.getTeamByName({ name: "BIG" }));
-
-  // console.log(await getTopTeams());
-
-  console.log(await getTeamPlayersStats("G2"));
-
-  // console.log(await HLTV.getEvents());
-  /*
-  console.log(await HLTV.getEvents());
+export async function getEventsByPeriod(id: Period) {
+  const gap: [number, number] = [Date.now() - period[id], Date.now()];
   const eventsIds = (await HLTV.getEvents())
-    .filter((x) => x.dateEnd >= Date.now() - WEEK && x.dateStart <= Date.now())
+    .filter(
+      (x) =>
+        gapWithinGap([x.dateStart, x.dateEnd], [...gap]) ||
+        liesInBetween(x.dateStart, ...gap)
+    )
     .map((x) => x.id);
-  console.log("kek");
-  console.log(eventsIds);
-  const result = await HLTV.getResults({ eventIds: [...eventsIds] });
 
-  console.log(result);
-  console.log(Date.now());
-  */
-})();
+  const result = await HLTV.getResults({ eventIds: [...eventsIds] });
+  return result;
+}
+
+function delay(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+export interface Maps {
+  de_mirage: number;
+  de_nuke: number;
+  de_dust2: number;
+  de_train: number;
+  de_overpass: number;
+  de_inferno: number;
+  de_vertigo: number;
+  de_anubis: number;
+}
+
+export type TeamMapsStats = {
+  id: number;
+  maps: Maps;
+};
+
+export async function teamMapsStats(ids: number[]): Promise<TeamMapsStats[]> {
+  const teamStats: TeamMapsStats[] = [];
+  for (let i = 0; i < ids.length; i++) {
+    try {
+      const p = await HLTV.getTeamStats({ id: ids[i] });
+      let maps: Maps = {
+        de_mirage: p.mapStats.de_mirage.winRate,
+        de_nuke: p.mapStats.de_nuke.winRate,
+        de_dust2: p.mapStats.de_dust2.winRate,
+        de_train: p.mapStats.de_train.winRate,
+        de_overpass: p.mapStats.de_overpass.winRate,
+        de_inferno: p.mapStats.de_inferno.winRate,
+        de_vertigo: p.mapStats.de_vertigo.winRate,
+        de_anubis: p.mapStats.de_anubis.winRate,
+      };
+      console.log(maps);
+      teamStats.push({ id: ids[i], maps });
+    } catch (e) {
+      break;
+    }
+  }
+
+  return teamStats;
+}
