@@ -194,8 +194,11 @@ export async function teamMapsStats(ids: number[]): Promise<TeamMapsStats[]> {
       };
       console.log(maps);
       teamStats.push({ id: ids[i], maps });
+      await delay(50000);
     } catch (e) {
-      break;
+      i--;
+      console.log(e);
+      await delay(80000);
     }
   }
 

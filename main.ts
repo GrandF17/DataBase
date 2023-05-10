@@ -35,6 +35,8 @@ async function setMapsInfo() {
   const teamIds = teams
     .map((x: TeamRanking) => x.team.id)
     .filter((x: number | undefined) => x != undefined) as number[];
+
+  console.log(teamIds);
   const winrate = await teamMapsStats(teamIds);
 
   console.log(winrate);
@@ -129,16 +131,19 @@ async function setBaseInfo() {
         // console.log(periods[j][k].team1.name);
         // console.log(periods[j][k].team2.name);
         if (
-          (periods[j][k].team1.name == (teams[i] as TeamRanking).team.name &&
-            periods[j][k].result.team1 > periods[j][k].result.team2) ||
-          (periods[j][k].team2.name == (teams[i] as TeamRanking).team.name &&
-            periods[j][k].result.team2 > periods[j][k].result.team1)
+          periods[j][k].team1.name == (teams[i] as TeamRanking).team.name ||
+          periods[j][k].team2.name == (teams[i] as TeamRanking).team.name
         ) {
-          console.log(`Found ${(teams[i] as TeamRanking).team.name}`);
-          ma[j][0]++;
-          ma[j][1]++;
-        } else {
-          ma[j][1]++;
+          if (
+            periods[j][k].result.team1 > periods[j][k].result.team2 ||
+            periods[j][k].result.team2 > periods[j][k].result.team1
+          ) {
+            console.log(`Found ${(teams[i] as TeamRanking).team.name}`);
+            ma[j][0]++;
+            ma[j][1]++;
+          } else {
+            ma[j][1]++;
+          }
         }
       }
     }
