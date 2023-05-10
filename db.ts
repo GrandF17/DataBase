@@ -21,7 +21,7 @@ export class DB {
 
       worksheet.columns = [
         ...Object.keys(entity as Object).map((x: any) => {
-          if (x == "id1_id2") {
+          if (x == "name") {
             return { header: x, key: x, width: x.length + 25 };
           }
           return { header: x, key: x, width: x.length + 5 };
